@@ -1,6 +1,6 @@
 ---
   name: "suggest_next_ip"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Suggest next available IP Address"
   enabled: true
   entry_point: "suggest_next_ip.py"
