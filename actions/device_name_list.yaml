@@ -1,6 +1,6 @@
 ---
   name: "device_name_list"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Returns list of devices names"
   enabled: true
   entry_point: "device_name_list.py"

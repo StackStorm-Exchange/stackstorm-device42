@@ -1,6 +1,6 @@
 ---
   name: "get_dns_zone"
-  runner_type: "run-python"
+  runner_type: "python-script"
   description: "Returns DNS zone file"
   enabled: true
   entry_point: "get_dns_zone.py"
