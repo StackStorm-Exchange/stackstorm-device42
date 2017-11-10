@@ -1,5 +1,0 @@
----
-d42_server: http://127.0.0.1
-d42_username: username
-d42_password: password
-verify_certificate: false

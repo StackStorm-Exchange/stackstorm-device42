@@ -1,0 +1,17 @@
+---
+    name: "lifecycle_triggered_object_category_change"
+    # pack: "d42"
+    description: "Respond to lifecycle event webhooks whenever a device gets a new lifecycle.  When this happens, update that devices object category. "
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "d42_lifecycle"
+
+    action:
+        ref: "device42fork.lc_objcat_updater"
+        parameters:
+            identifier: "{{trigger.body.data.device_id}}" 
+            identifier_type: 'device_id'  # lc webhook responds with device_id 
+            lc_type_id: "{{trigger.body.data.type_id}}" 

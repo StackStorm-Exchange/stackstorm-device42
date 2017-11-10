@@ -1,0 +1,16 @@
+---
+name: get_device_by_id 
+runner_type: run-python
+description: geta device on D42 
+enabled: true
+entry_point: 'get_device_by_id.py'
+parameters:
+  device_id:
+    type: 'string'
+    description: 'ID of device on D42.  '
+    required: true
+  d42_api_path:
+    description: 'path to access d42 api'
+    type: 'string'
+    required: false
+    default: '{{config_context.d42_api_path}}'
