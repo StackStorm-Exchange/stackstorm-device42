@@ -1,7 +1,7 @@
 ---
 name: udpate_object_category_by_lifecycle_id 
 runner_type: run-python
-description: 'update a devices object category on D42 based on an incoming lifecycle event ID.  Stores lifecycle id -> new object category maps in the st2 datastore' 
+description: 'Update a devices object category and more  on D42 based on an incoming lifecycle event ID.  ' 
 enabled: true
 entry_point: 'lc_objcat_updater.py'
 parameters:

@@ -1,7 +1,7 @@
 ---
 name: get_device_by_id 
 runner_type: run-python
-description: geta device on D42 
+description: 'Get a device with full details from D42 by its ID'  
 enabled: true
 entry_point: 'get_device_by_id.py'
 parameters:
