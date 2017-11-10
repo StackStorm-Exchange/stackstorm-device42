@@ -50,5 +50,5 @@ class Update_Device(BaseAction):
          
         response = self.putAPI(url, payload=payload) 
         
-        return full_device 
+        return response 
 
