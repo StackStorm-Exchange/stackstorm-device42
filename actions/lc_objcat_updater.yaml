@@ -1,0 +1,21 @@
+---
+name: udpate_object_category_by_lifecycle_id 
+runner_type: run-python
+description: 'update a devices object category on D42 based on an incoming lifecycle event ID.  Stores lifecycle id -> new object category maps in the st2 datastore' 
+enabled: true
+entry_point: 'lc_objcat_updater.py'
+parameters:
+  identifier:
+    type: 'string'
+    description: 'contains the name / serial / asset / device_id of the device on D42 to return.  '
+    required: true
+  identifier_type:
+    type: 'string'
+    description: 'designates the type of identifier used to call D42 API.  Can be name, serial, asset, or device_id.  '
+    required: true
+  lc_type_id:
+    type: 'string' 
+    description: 'id of lc id from D42'
+  additional_changes:
+    type: 'object' 
+    description: 'optionally, you may make additional changes to this device via a key value pair object input through this parameter'

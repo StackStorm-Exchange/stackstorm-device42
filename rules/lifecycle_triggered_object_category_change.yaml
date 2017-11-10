@@ -14,4 +14,5 @@
         parameters:
             identifier: "{{trigger.body.data.device_id}}" 
             identifier_type: 'device_id'  # lc webhook responds with device_id 
-            lc_type_id: "{{trigger.body.data.type_id}}" 
+            lc_type_id: "{{trigger.body.data.type_id}}"
+            additional_changes: "{'tags':'auto_lc_objcat_udpate'}" 
