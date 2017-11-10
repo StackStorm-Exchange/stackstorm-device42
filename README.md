@@ -84,3 +84,7 @@ result:
   stderr: ''
   stdout: ''
 ```
+
+## Debuging Tips 
+
+- rules engine log: tail -f /var/log/st2/st2rulesengine.log

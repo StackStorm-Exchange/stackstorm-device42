@@ -44,7 +44,7 @@ class LC_ObjCat_Updater(BaseAction):
         payload.update(additional_changes)
          
         url = 'device/'
-        response = self.putAPI(url, data=payload) 
+        response = self.putAPI(url, payload=payload) 
         
         return response 
 
