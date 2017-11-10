@@ -9,8 +9,3 @@ parameters:
     type: 'string'
     description: 'ID of device on D42.  '
     required: true
-  d42_api_path:
-    description: 'path to access d42 api'
-    type: 'string'
-    required: false
-    default: '{{config_context.d42_api_path}}'
