@@ -21,19 +21,21 @@ class BaseAction(Action):
         self.verify = self.config.get('verify_certificate', False)
 
     def getAPI(self, endpoint, params):
-        r = requests.get("%s%s" % (self.d42_server, endpoint),
-                         params=params,
-                         auth=(self.d42_username, self.d42_password),
-                         verify=self.verify
-                         )
+        r = requests.get(
+            "%s%s" % (self.d42_server, endpoint),
+            params=params,
+            auth=(self.d42_username, self.d42_password),
+            verify=self.verify
+        )
 
         return r.json()
 
     def putAPI(self, endpoint, params=None, payload=None):
-        r = requests.put("%s%s" % (self.d42_server, endpoint), 
-                        params=params,
-                        data=payload,
-                        auth=(self.d42_username, self.d42_password),
-                        verify=self.verify
-                        )
-        return r.json() 
+        r = requests.put(
+            "%s%s" % (self.d42_server, endpoint),
+            params=params,
+            data=payload,
+            auth=(self.d42_username, self.d42_password),
+            verify=self.verify
+        )
+        return r.json()
