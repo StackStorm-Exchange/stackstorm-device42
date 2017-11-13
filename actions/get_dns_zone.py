@@ -5,8 +5,10 @@ from lib.base_action import BaseAction
 
 
 class GetDnsZone(BaseAction):
-    def run(self, domain, record_type=None, name=None, nameserver=None, content=None, tags=None,
-            tags_and=None):
+    def run(self, domain, record_type=None, name=None, 
+            nameserver=None, content=None, tags=None,
+            tags_and=None
+            ):
         response = self.getAPI("/api/1.0/dns/records/", {
             "domain": domain,
             "type": record_type,

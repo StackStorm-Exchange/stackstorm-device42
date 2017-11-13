@@ -1,5 +1,6 @@
 from lib.base_action import BaseAction
 
+
 class GetDeviceById(BaseAction):
 
     def run(self, device_id):
