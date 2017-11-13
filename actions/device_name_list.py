@@ -2,14 +2,17 @@ from lib.base_action import BaseAction
 
 
 class DeviceNameList(BaseAction):
-    def run(self, type=None, service_level=None, in_service=None, customer=None, tags=None,
-            blade_host_name=None, virtual_host_name=None, building_id=None, building=None,
+    def run(self, type=None, service_level=None, in_service=None,
+            customer=None, tags=None, blade_host_name=None,
+            virtual_host_name=None, building_id=None, building=None,
             room_id=None, room=None, rack_id=None, rack=None, serial_no=None,
-            serial_no_contains=None, asset_no=None, name=None, tags_and=None, uuid=None,
-            is_it_switch=None, is_it_virtual_host=None, is_it_blade_host=None, hardware=None,
-            hardware_ids=None, os=None, virtual_subtype=None, last_updated_lt=None,
+            serial_no_contains=None, asset_no=None, name=None, tags_and=None,
+            uuid=None, is_it_switch=None, is_it_virtual_host=None,
+            is_it_blade_host=None, hardware=None, hardware_ids=None,
+            os=None, virtual_subtype=None, last_updated_lt=None,
             last_updated_gt=None, first_added_lt=None, first_added_gt=None,
-            custom_fields_and=None, custom_fields_or=None):
+            custom_fields_and=None, custom_fields_or=None
+            ):
         response = self.getAPI("/api/1.0/devices/", {
             "type": type,
             "service_level": service_level,

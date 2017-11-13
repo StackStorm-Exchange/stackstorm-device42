@@ -5,7 +5,7 @@ from lib.base_action import BaseAction
 
 
 class GetDnsZone(BaseAction):
-    def run(self, domain, record_type=None, name=None, 
+    def run(self, domain, record_type=None, name=None,
             nameserver=None, content=None, tags=None,
             tags_and=None
             ):
@@ -21,11 +21,15 @@ class GetDnsZone(BaseAction):
 
         result = ""
         if len(response["records"]) > 0:
-            zone = dns.zone.Zone(dns.name.from_text(response["records"][0]["dns_zone"]))
+            zone = dns.zone.Zone(dns.name.from_text(
+                response["records"][0]["dns_zone"]
+            ))
             for record in response["records"]:
                 try:
                     rdtype = dns.rdatatype.from_text(record["type"])
-                    rdata = dns.rdata.from_text(dns.rdataclass.IN, rdtype, record["content"])
+                    rdata = dns.rdata.from_text(
+                        dns.rdataclass.IN, rdtype, record["content"]
+                    )
                     n = zone.get_rdataset(record["name"], rdtype, create=True)
                     n.add(rdata, record["ttl"])
                 except Exception, e:
