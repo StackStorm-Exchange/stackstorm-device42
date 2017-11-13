@@ -9,7 +9,7 @@
             url: "d42_lifecycle"
 
     action:
-        ref: "device42fork.udpate_object_category_by_lifecycle_id"
+        ref: "device42.udpate_object_category_by_lifecycle_id"
         parameters:
             identifier: "{{trigger.body.data.device_id}}" 
             identifier_type: 'device_id'  # lc webhook responds with device_id 
