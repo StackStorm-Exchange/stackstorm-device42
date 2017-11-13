@@ -19,7 +19,7 @@ class LC_ObjCat_Updater(BaseAction):
 
         # change obj cat with the LC name (as a basic example)
         changes = {
-            "new_object_category": "%s_lc" % (lc_type_name.value),
+            "new_object_category": "%s" % (lc_type_name.value),
         }
 
         payload.update(changes)
