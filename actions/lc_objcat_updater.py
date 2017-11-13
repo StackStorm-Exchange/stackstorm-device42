@@ -6,22 +6,6 @@ import time, requests, json, random, string
 
 class LC_ObjCat_Updater(BaseAction):
 
-    def put(self, url, payload, user, pw):
-        try:  
-            res = requests.put(
-                url,
-                auth=(user, pw),
-                headers={'Accept': 'application/json'}, 
-                data=payload,
-                verify=False # https call to localhost requires skipping verification
-            )
-        except requests.exceptions.RequestsException as e:
-            self.logger.error( e )
-            sys.exit(1)
-        self.logger.info("HTTP GET %s - status: %s " % (url, res.status_code) ) 
-        
-        return res 
-         
     def run(self, identifier, identifier_type, lc_type_id, additional_changes):
         
         st2client = Client(base_url='http://localhost') 
