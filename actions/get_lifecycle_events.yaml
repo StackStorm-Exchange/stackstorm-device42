@@ -1,0 +1,31 @@
+---
+name: get_lifecycle_events 
+runner_type: run-python
+description: "get lifecycle events from D42 with optional filtering parameters. https://api.device42.com/#asset-device-life-cycle"  
+enabled: true
+entry_point: 'get_lifecycle_events.py'
+parameters:
+  device_name:
+    type: 'string'
+    description: 'Unique name of device on D42.  '
+    required: false 
+  lc_type:
+    type: 'string'
+    description: 'filter by existing event type'
+    required: false 
+  asset:
+    type: 'string'
+    description: 'filter by asset name'
+    required: false 
+  enduser: 
+    type: 'string'
+    description: 'filter by end user name'
+    required: false 
+  date_gt: 
+    type: 'string'
+    description: 'filter by date greater than (YYYY-MM-DD)'
+    required: false
+  date_lt:
+    type: 'string'
+    description: 'filter by date less than (YYYY-MM-DD)'
+    required: false

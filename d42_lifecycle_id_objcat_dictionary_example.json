@@ -1,0 +1,30 @@
+[
+    {
+        "name": "lc_1",
+        "value": "Inventoried"
+    },
+    {
+        "name": "lc_2",
+        "value": "Purchased"
+    },
+    {
+        "name": "lc_3",
+        "value": "Retired"
+    },
+    {
+        "name": "lc_4",
+        "value": "Installed"
+    },
+    {
+        "name": "lc_5",
+        "value": "CheckedOut"
+    },
+    {
+        "name": "lc_6",
+        "value": "CheckedIn"
+    },
+    {
+        "name": "lc_7",
+        "value": "Delivered"
+    }
+]

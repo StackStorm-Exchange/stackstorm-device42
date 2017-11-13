@@ -28,3 +28,12 @@ class BaseAction(Action):
                          )
 
         return r.json()
+
+    def putAPI(self, endpoint, params=None, payload=None):
+        r = requests.put("%s%s" % (self.d42_server, endpoint), 
+                        params=params,
+                        data=payload,
+                        auth=(self.d42_username, self.d42_password),
+                        verify=self.verify
+                        )
+        return r.json() 
