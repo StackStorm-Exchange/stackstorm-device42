@@ -1,6 +1,5 @@
 ---
     name: "lifecycle_triggered_object_category_change"
-    # pack: "d42"
     description: "Respond to lifecycle event webhooks whenever a device gets a new lifecycle.  When this happens, update that devices object category. "
     enabled: true
 

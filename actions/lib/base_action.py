@@ -29,7 +29,7 @@ class BaseAction(Action):
 
         return r.json()
 
-    def putAPI(self, endpoint, params, payload):
+    def putAPI(self, endpoint, params=None, payload=None):
         r = requests.put("%s%s" % (self.d42_server, endpoint), 
                         params=params,
                         data=payload,

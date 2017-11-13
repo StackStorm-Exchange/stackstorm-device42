@@ -85,6 +85,111 @@ result:
   stdout: ''
 ```
 
-## Debuging Tips 
+#### Get `device42.get_device_by_id`  
+```sh 
+# st2 run device42.get_device_by_id device_id=15 
+
+id: 5a09b77bf2fdc607ac43f206
+status: succeeded
+parameters: 
+  device_id: '15'
+result: 
+  exit_code: 0
+  result:
+    aliases: []
+    asset_no: ''
+    category: Inventoried_LC
+    cpucore: 2
+    cpucount: 2
+    cpuspeed: 1900.0
+    custom_fields:
+    - key: Puppet Node ID
+      notes: Puppet Server 10.42.7.60
+      value: puppet.device42.pvt
+    - key: test_field
+      notes: null
+      value: 22 days
+    - key: test_field2
+      notes: null
+      value: Linux
+    - key: node_classes
+      notes: ''
+      value: '{"classes": {"example": { "param": "example_param" } }, "environment": "production" }'
+    - key: lifecycle
+      notes: Delivered, Installed, Configured, Deployed, InService
+      value: Delivered
+    - key: Salt Node ID
+      notes: null
+      value: null
+    customer: null
+    device_external_links: []
+    device_id: 15
+    device_purchase_line_items: []
+    hdd_details: null
+    hddcount: 3
+    hddraid: null
+    hddraid_type: null
+    hddsize: 18.25
+    ...
+  stderr: ''
+  stdout: ''
+```
+
+#### Get `device42.get_lifecycle_events` with optional filtering. 
+```sh
+# st2 run  device42.get_lifecycle_events device_name="example.device42" date_gt="2017-11-11"  
+
+id: 5a09b915f2fdc607ac43f209
+status: succeeded
+parameters: 
+  date_gt: '2017-11-11'
+  device_name: example.device42
+result: 
+  exit_code: 0
+  result:
+    lifecycle_events:
+    - date: '2017-11-13T15:20:42Z'
+      device: example.device42
+      id: 30
+      notes: ''
+      type: Checked In
+    limit: 1000
+    offset: 0
+    total_count: 1
+  stderr: ''
+  stdout: ''
+```
+
+### Put changes on device `device42.update_device` 
+```sh
+ st2 run device42.update_device identifier=15 identifier_type="device_id" changes='{"tags":"example_tag"}'
+.................................
+id: 5a09bb4bf2fdc607ac43f20c
+status: succeeded
+parameters: 
+  changes:
+    tags: example_tag
+  identifier: '15'
+  identifier_type: device_id
+result: 
+  exit_code: 0
+  result:
+    code: 0
+    msg:
+    - 'device added or updated '
+    - 15
+    - example.device42
+    - true
+  stderr: ''
+  stdout: ''
+  
+
+```
+
+## Debuging / General Tips 
 
 - rules engine log: tail -f /var/log/st2/st2rulesengine.log
+
+- Review the input parameters for a given action in its {action_name}.yaml file in /opt/stackstorm/packs/device42/actions
+
+- An example json file is included to show the structure for importing data directly into the key value store for use with the device42fork.lifecycle_triggered_object_category_change rule. Associate Lifecycle type IDs from Device42 to the name of the new object category to apply to the device.    
