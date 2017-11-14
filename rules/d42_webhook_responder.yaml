@@ -1,0 +1,14 @@
+---
+    name: "d42_webhook_responder"
+    description: "Sample rule resonding to d42 device updated webhook. This rule can be easily modified to respond to any Device42 webhook.  "
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "d42" # this will become an endpoint located at: https://{st2 ip}/api/v1/webhooks/d42
+
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo \"{{trigger.body}}\" >> ~/st2.d42_webhook_responder.out"
