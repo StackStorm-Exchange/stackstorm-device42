@@ -22,23 +22,23 @@ You can also use dynamic values from the datastore. See the
 
 ## Supported Actions
 ```
-+------------------------------------------+----------+------------------------------------------+
-| ref                                      | pack     | description                              |
-+------------------------------------------+----------+------------------------------------------+
-| device42.device_name_list                | device42 | Returns list of devices names            |
-| device42.get_device_by_id                | device42 | Get a device with full details from D42  |
-|                                          |          | by its ID                                |
-| device42.get_dns_zone                    | device42 | Returns DNS zone file                    |
-| device42.get_lifecycle_events            | device42 | Get lifecycle events from D42 with       |
-|                                          |          | optional filtering parameters.           |
-|                                          |          | https://api.device42.com/#asset-device-  |
-|                                          |          | life-cycle                               |
-| device42.suggest_next_ip                 | device42 | Suggest next available IP Address        |
-| device42.udpate_object_category_by_lifec | device42 | Update a devices object category and     |
-| ycle_id                                  |          | more  on D42 based on an incoming        |
-|                                          |          | lifecycle event ID.                      |
-| device42.update_device                   | device42 | Update a device on D42                   |
-+------------------------------------------+----------+------------------------------------------+
++---------------------------------------------------+----------+------------------------------------------+
+| ref                                               | pack     | description                              |
++---------------------------------------------------+----------+------------------------------------------+
+| device42.device_name_list                         | device42 | Returns list of devices names            |
+| device42.get_device_by_id                         | device42 | Get a device with full details from D42  |
+|                                                   |          | by its ID                                |
+| device42.get_dns_zone                             | device42 | Returns DNS zone file                    |
+| device42.get_lifecycle_events                     | device42 | Get lifecycle events from D42 with       |
+|                                                   |          | optional filtering parameters.           |
+|                                                   |          | https://api.device42.com/#asset-device-  |
+|                                                   |          | life-cycle                               |
+| device42.suggest_next_ip                          | device42 | Suggest next available IP Address        |
+| device42.udpate_object_category_by_lifecycle_id   | device42 | Update a devices object category and     |
+|                                                   |          | more  on D42 based on an incoming        |
+|                                                   |          | lifecycle event ID.                      |
+| device42.update_device                            | device42 | Update a device on D42                   |
++---------------------------------------------------+----------+------------------------------------------+
 ```
 
 ## Examples
