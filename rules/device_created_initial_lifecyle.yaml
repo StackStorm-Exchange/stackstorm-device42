@@ -1,7 +1,6 @@
 ---
     name: "device_created_initial_lifecycle"
-    description: "Initializes new devices created in the automated\
-    server provisioning workflow with the \"purchasing\" lifecycle"
+    description: "Initializes new devices created in the automated server provisioning workflow with the \"purchasing\" lifecycle"
     enabled: true
 
     trigger:
