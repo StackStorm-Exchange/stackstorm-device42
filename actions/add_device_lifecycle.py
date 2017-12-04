@@ -1,5 +1,5 @@
 from lib.base_action import BaseAction
-
+import datetime
 
 class Add_Device_Lifecycle(BaseAction):
 
@@ -8,10 +8,14 @@ class Add_Device_Lifecycle(BaseAction):
 
         # name / serial / asset / device_id ->  actual identifier of given type
         payload = {identifier_type: identifier}
-
+        
+        d = datetime.datetime
+        timestamp = d.now().strftime("%Y-%m-%d %H:%M")  
+        
         # add lifecycle to device
         changes = {
             "type": "%s" % (lc),
+            "date": "%s" % (timestamp),
         }
 
         payload.update(changes)
