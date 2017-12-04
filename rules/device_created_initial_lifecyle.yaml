@@ -17,7 +17,6 @@
         ref: "device42.add_device_lifecycle"
         parameters: 
             identifier: "{{trigger.body.data.name}}" 
-            identifier_type: "name"
+            identifier_type: "device"
             lc: "purchasing"
-            device_name_prefix: "auto_"
             additional_changes: "{'tags':'add_device_lifecycle'}" 
