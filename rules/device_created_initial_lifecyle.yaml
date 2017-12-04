@@ -1,0 +1,23 @@
+---
+    name: "device_created_initial_lifecycle"
+    description: "Initializes new devices created in the automated\
+    server provisioning workflow with the \"purchasing\" lifecycle"
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "d42"
+
+    criteria: 
+        trigger.body.data.name:
+            type: "startswith"
+            pattern: "auto_"
+
+    action:
+        ref: "device42.add_device_lifecycle"
+            identifier: "{{trigger.body.data.name}}" 
+            identifier_type: "name"
+            lc: "purchasing"
+            device_name_prefix: "auto_"
+            additional_changes: "{'tags':'add_device_lifecycle'}" 
