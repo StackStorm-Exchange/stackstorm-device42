@@ -12,6 +12,9 @@
         trigger.body.data.name:
             type: "startswith"
             pattern: "auto_"
+        trigger.action:
+            type: "iequals"
+            pattern: "I"
 
     action:
         ref: "device42.add_device_lifecycle"
