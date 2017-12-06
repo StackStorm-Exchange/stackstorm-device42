@@ -6,7 +6,7 @@ class SuggestNextIp(BaseAction):
             vrf_group_id=None, vrf_group=None,
             reserved_ip=None
             ):
-        response = self.getAPI("/api/1.0/suggest_ip/", {
+        response = self.getAPI("/suggest_ip/", {
             "subnet_id": subnet_id,
             "subnet": subnet,
             "name": name,
@@ -15,4 +15,4 @@ class SuggestNextIp(BaseAction):
             "reserved_ip": reserved_ip,
         })
 
-        return response["ip"]
+        return response

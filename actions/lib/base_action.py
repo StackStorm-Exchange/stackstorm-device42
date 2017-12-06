@@ -2,6 +2,10 @@ import requests
 from st2common.runners.base_action import Action
 
 
+class Device42BaseException(Exception):
+    pass
+
+
 class BaseAction(Action):
     def __init__(self, config):
         super(BaseAction, self).__init__(config)
@@ -27,8 +31,12 @@ class BaseAction(Action):
             auth=(self.d42_username, self.d42_password),
             verify=self.verify
         )
+        if r.ok:
+            return r.json() 
+        else: 
+            # return "url - %s%s \n response - %s" % (self.d42_server, endpoint, r)         
+            return r
 
-        return r.json()
 
     def putAPI(self, endpoint, params=None, payload=None):
         r = requests.put(
@@ -38,4 +46,35 @@ class BaseAction(Action):
             auth=(self.d42_username, self.d42_password),
             verify=self.verify
         )
-        return r.json()
+        if r.ok:
+            return r.json()
+        else:
+            return r
+
+    def postAPI(self, endpoint, params=None, payload=None):
+        r = requests.post(
+            "%s%s" % (self.d42_server, endpoint),
+            params=params,
+            data=payload,
+            auth=(self.d42_username, self.d42_password),
+            verify=self.verify
+        )
+        if r.ok:
+            return r.json()
+        else:
+            return r
+
+    def post(self, endpoint, headers=None, params=None, payload=None):
+
+        r = requests.post(
+                url="%s%s" % (self.d42_server, endpoint),
+                auth=('admin', 'adm!nd42'),
+                params=params,
+                data=payload,
+                verify=self.verify,
+        )
+
+        if r.ok:
+            return r.json()
+        else:
+            return r
