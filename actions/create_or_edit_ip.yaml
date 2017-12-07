@@ -33,4 +33,6 @@
     clear_all:
       type: "string"
       description: "If yes - then IP is marked as available and device and mac address associations are cleared"
-
+    debug:
+      type: "boolean"
+      description: "if True, will print full Response text, if false, returns object.  use to debug output"

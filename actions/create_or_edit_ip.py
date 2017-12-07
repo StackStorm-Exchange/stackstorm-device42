@@ -5,9 +5,9 @@ class CreateIP(BaseAction):
     def run(self, subnet=None, 
             vrf_group_id=None, vrf_group=None,
             ipaddress=None, macaddress=None, ip_type=None, tags=None,
-            device_name=None, available=None, clear_all=None
-            ):
-
+            device_name=None, available=None, clear_all=None,
+            debug=False):
+        
         payload = {
             "ipaddress": ipaddress, "subnet": subnet,
             "macaddress": macaddress, "ip_type": ip_type,
@@ -17,5 +17,8 @@ class CreateIP(BaseAction):
         print("payload: %s" % payload)
         d42_headers = {'Accept': 'application/json'} 
         response = self.post( endpoint="ips/", payload=payload, headers=d42_headers)
-
-        return response
+        
+        if debug:
+            return response.text
+        else:
+            return response 
