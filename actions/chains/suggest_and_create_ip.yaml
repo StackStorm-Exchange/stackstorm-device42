@@ -21,6 +21,15 @@
                 ip_type: "{{ip_type}}"
                 debug: false
             on-failure: "create_ip_fail"
+            on-success: "add_device_lifecycle"
+        - 
+            name: "add_device_lifecycle"
+            ref: "device42.add_device_lifecycle"
+            parameters:
+                identifier_type: "device"
+                identifier: "{{device_name}}"
+                lc: "os_provisioning"
+            on-failure: "add_device_lifecycle_fail"
         -            
             name: "suggest_ip_fail"
             ref: "core.local"
@@ -30,5 +39,9 @@
             name: "create_ip_fail"
             ref: "core.local"
             parameters:
+                cmd: "echo error in create_ip >> ./error.log"        
+        -
+            name: "add_device_lifecycle_fail"
+            ref: "core.local"
+            parameters:
                 cmd: "echo error in create_ip >> ./error.log"
-            
