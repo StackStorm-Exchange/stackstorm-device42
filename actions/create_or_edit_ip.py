@@ -7,16 +7,15 @@ class CreateIP(BaseAction):
             ipaddress=None, macaddress=None, ip_type=None, tags=None,
             device_name=None, available=None, clear_all=None
             ):
-        response = self.post("ips/", {
-            #"subnet": subnet,
-            "ipaddress": ipaddress,
-            "type": ip_type,
-            "tags": tags,
-            #"vrf_group_id": vrf_group_id,
-            #"vrf_group": vrf_group,
-            #"device": device_name,
-            #"available": available,
-            #"clear_all": clear_all
-        })
 
-        return response.text
+        payload = {
+            "ipaddress": ipaddress, "subnet": subnet,
+            "macaddress": macaddress, "ip_type": ip_type,
+            "tags": tags, "device": device_name
+        }
+
+        print("payload: %s" % payload)
+        d42_headers = {'Accept': 'application/json'} 
+        response = self.post( endpoint="ips/", payload=payload, headers=d42_headers)
+
+        return response

@@ -13,7 +13,8 @@ class BaseAction(Action):
         self.d42_server = self.config.get('d42_server', None)
         if not self.d42_server:
             raise ValueError('"d42_server" config value is required')
-
+            # d42_server should be aproximately -> https://00.00.00.00/api/1.0/
+        
         self.d42_username = self.config.get('d42_username', None)
         if not self.d42_username:
             raise ValueError('"d42_username" config value is required')
@@ -66,15 +67,18 @@ class BaseAction(Action):
 
     def post(self, endpoint, headers=None, params=None, payload=None):
 
+        url = "%s%s" % (self.d42_server, endpoint)
         r = requests.post(
-                url="%s%s" % (self.d42_server, endpoint),
+                url=url,
                 auth=('admin', 'adm!nd42'),
+                headers=headers,
                 params=params,
                 data=payload,
                 verify=self.verify,
         )
-
+        print("url: %s" % url)
         if r.ok:
-            return r.json()
+            return "url: %s \n resp: %s " % (url, r.json()) 
         else:
-            return r
+            # return "url - %s%s \n response - %s" % (self.d42_server, endpoint, r) 
+            return r 
