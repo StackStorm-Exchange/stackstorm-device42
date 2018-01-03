@@ -25,12 +25,19 @@ class BaseAction(Action):
 
         self.verify = self.config.get('verify_certificate', False)
 
-    def getAPI(self, endpoint, params):
+        self.headers = {'Accept':'application/json', 'Content-Type': 'application/json'}
+
+    def getAPI(self, endpoint, params, headers=None):
+        
+        if headers is None:
+            headers = self.headers 
+
         r = requests.get(
             "%s%s" % (self.d42_server, endpoint),
             params=params,
             auth=(self.d42_username, self.d42_password),
-            verify=self.verify
+            verify=self.verify,
+            headers=headers
         )
         if r.ok:
             return r.json() 
@@ -78,7 +85,7 @@ class BaseAction(Action):
         )
         print("url: %s" % url)
         if r.ok:
-            return "url: %s \n resp: %s " % (url, r.json()) 
+            return r.json()
         else:
             # return "url - %s%s \n response - %s" % (self.d42_server, endpoint, r) 
             return r 
