@@ -1,0 +1,16 @@
+---
+  name: "write_pxe_cfg"
+  runner_type: "python-script"
+  description: "Simply writes a pxe cfg for an incoming MAC addr + OS. Requires configuration based on your environment specific PXE configuration."
+  enabled: true
+  entry_point: "write_pxe_cfg.py"
+  parameters:
+    mac_addr:
+      type: "string"
+      description: "MAC address of the machine that will be given the reserved IP"
+      required: true
+    os:
+      type: "string"
+      description: "OS pxe cfg to copy"
+      required: true 
+

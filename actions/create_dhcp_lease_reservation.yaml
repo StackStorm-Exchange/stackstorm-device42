@@ -22,7 +22,7 @@
       description: "hostname or IP of dhcp server to make OMAPI call to" 
       required: true
     dhcp_port:
-      type: "string"
+      type: "integer"
       description: "port to communicate with dhcp server on"
       required: true
     auth_key_name:

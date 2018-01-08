@@ -1,4 +1,5 @@
 import pypureomapi
+from lib.base_action import BaseAction
 
 
 class CreateDHCPLeaseReservation(BaseAction):
@@ -11,7 +12,7 @@ class CreateDHCPLeaseReservation(BaseAction):
                 auth_key_name.encode(),
                 auth_key.encode() 
             )       
-            response = o.add_host_supersede_name(lease_ip, mac, server_name) 
+            response = o.add_host_supersede_name(reserved_ip, mac_addr, server_name) 
             print("reservation created  for host %s: %s -> %s" % 
                 (server_name, reserved_ip, mac_addr)
             )

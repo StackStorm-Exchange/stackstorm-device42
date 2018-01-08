@@ -31,6 +31,18 @@
                 available: "0"
             on-failure: "create_ip_fail"
             on-success: "add_device_lifecycle"
+        
+        -
+            name: "create_dhcp_reservation"
+            ref: "device42.create_dhcp_lease_reservation"
+            parameters:
+                reserved_ip: 
+                mac_addr:
+                server_name: "{{get_device.}}"
+                dhcp_host: "192.168.41.1"
+                dhcp_port: "7911"
+                auth_key_name: "omapi_key"
+                auth_key: "+PoRtIuTdp46vz2yxVwkQHH2wsjcZJCHcx4bgUA7ykckYR9F6+bazazPAxcslO3DXwMKGgQ6wZro4/JgZ/hBbA=="
         - 
             name: "add_device_lifecycle"
             ref: "device42.add_device_lifecycle"
