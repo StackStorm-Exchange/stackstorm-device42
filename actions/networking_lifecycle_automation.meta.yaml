@@ -1,10 +1,10 @@
 ---
 # action definition metadata
-name: "get_device_suggest_and_create_ip"
-description: "gets device then suggests the next IP in a subnet and creates it in Device42.  Links that IP to the device as well."
+name: "networking_lifecycle_automation"
+description: "gets device then suggests the next IP in a subnet and creates it in Device42. Adds IP to device in D42. Creates DHCP reservation and creates a specific PXE config for this machine."
 runner_type: "action-chain"
 pack: "device42"
-entry_point: "chains/get_device_suggest_and_create_ip.yaml"
+entry_point: "chains/networking_lifecycle_automation.yaml"
 
 enabled: true
 
