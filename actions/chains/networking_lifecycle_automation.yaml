@@ -50,7 +50,7 @@
             ref: "device42.write_pxe_cfg"
             parameters:
                 mac_addr: "{{get_device.result.mac_addresses[0].mac}}" 
-                os: "{{get_device.result.os}}"
+                custom_fields: "{{get_device.result.custom_fields}}"
             on-failure: "write_pxe_cfg_fail"
         - 
             name: "add_device_lifecycle"

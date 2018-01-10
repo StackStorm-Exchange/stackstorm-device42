@@ -3,6 +3,14 @@
     description: "Device42 instance address (with protocol and without trailing slash)."
     type: "string"
     required: true
+  d42_api_path:
+    description: "for calls to the regular API at /api/1.0"
+    type: "string"
+    default: "/api/1.0/"
+  d42_doql_api_path:
+    description: "for calls to the doql API"
+    type: "string"
+    default: "/services/data/v1.0/query/"
   d42_username:
     description: "Device42 username."
     type: "string"
