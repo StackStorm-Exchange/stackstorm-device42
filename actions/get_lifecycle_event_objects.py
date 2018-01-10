@@ -2,11 +2,11 @@ from lib.base_action import BaseAction
 
 
 class GetLifecycleEventObjects(BaseAction):
-    def run(self) 
+    def run(self): 
 
         d42_headers = {'Accept': 'application/json'}
-        payload = {query: "SELECT * FROM view_assetaction_v1"} 
-        response = self.post( endpoint="/", payload=payload, headers=d42_headers)
+        payload = {"query": "SELECT * FROM view_assetaction_v1"} 
+        response = self.post( endpoint="services/data/v1.0/query/", payload=payload, headers=d42_headers, doql_query=True)
         
         if type(response) is dict:  # d42 api agent returns response.json(0) if response.ok...:
             return response
