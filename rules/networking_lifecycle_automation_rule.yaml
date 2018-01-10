@@ -1,0 +1,22 @@
+---
+    name: "networking_lifecycle_automation_rule"
+    description: "When a device enters the networking lifecycle, execute the networking_lifecycle_automation action chain."
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "d42_lifecycle"
+
+    criteria: 
+        trigger.body.data.type_id:
+            type: "equals"
+            pattern: "{{st2kv.system.networking_lc_type_id }}" # for example, 15
+
+    action:
+        ref: "device42.networking_lifecycle_automation"
+        parameters:
+            subnet_id: 4 
+            device_id: "{{trigger.body.data.id}}" 
+            subnet_name: "provisioning_automation_internal_network"
+            subnet_network_mask: "192.168.41.0/24"
