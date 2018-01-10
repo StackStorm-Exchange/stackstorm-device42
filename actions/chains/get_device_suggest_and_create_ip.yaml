@@ -36,13 +36,22 @@
             name: "create_dhcp_reservation"
             ref: "device42.create_dhcp_lease_reservation"
             parameters:
-                reserved_ip: 
-                mac_addr:
-                server_name: "{{get_device.}}"
+                reserved_ip: "{{suggest_ip.result}}" 
+                mac_addr: "{{get_device.result.mac_addresses[0].mac}}"
+                server_name: "{{get_device.result.serial_no}}"
                 dhcp_host: "192.168.41.1"
                 dhcp_port: "7911"
                 auth_key_name: "omapi_key"
                 auth_key: "+PoRtIuTdp46vz2yxVwkQHH2wsjcZJCHcx4bgUA7ykckYR9F6+bazazPAxcslO3DXwMKGgQ6wZro4/JgZ/hBbA=="
+            on-failure: "create_dhcp_lease_reservation_fail"
+
+        - 
+            name: "write_pxe_cfg_file"
+            ref: "device42.write_pxe_cfg"
+            parameters:
+                mac_addr: "{{get_device.result.mac_addresses[0].mac}}" 
+                os: "{{get_device.result.os}}"
+            on-failure: "write_pxe_cfg_fail"
         - 
             name: "add_device_lifecycle"
             ref: "device42.add_device_lifecycle"
@@ -55,19 +64,30 @@
             name: "get_device_fail"
             ref: "core.local"
             parameters:
-                cmd: "echo error in get_device>> ./error.log"
+                cmd: "echo error in get_device"
         - 
             name: "suggest_ip_fail"
             ref: "core.local"
             parameters:
-                cmd: "echo error in suggest_ip >> ./error.log"
+                cmd: "echo error in suggest_ip"
         -
             name: "create_ip_fail"
             ref: "core.local"
             parameters:
-                cmd: "echo error in create_ip >> ./error.log"
+                cmd: "echo error in create_ip"
+        - 
+            name: "create_dhcp_lease_reservation_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in create_dhcp_lease_resrvation"
+        -
+            name: "write_pxe_cfg_fail"
+            ref: "core.local" 
+            parameters: 
+                cmd: "echo error in write_pxe_cfg" 
+
         -
             name: "add_device_lifecycle_fail"
             ref: "core.local"
             parameters:
-                cmd: "echo error in create_ip >> ./error.log"
+                cmd: "echo error in create_ip"

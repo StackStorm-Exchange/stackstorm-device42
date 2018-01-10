@@ -10,9 +10,9 @@
             url: "d42"
 
     criteria: 
-        trigger.body.data.name:
-            type: "startswith"
-            pattern: "auto_"
+        trigger.body.data.notes:
+            type: "icontains"
+            pattern: "provisioning_auto"
         trigger.body.action:
             type: "iequals"
             pattern: "I"

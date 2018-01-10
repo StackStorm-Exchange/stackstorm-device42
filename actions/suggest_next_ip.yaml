@@ -23,7 +23,7 @@
     reserved_ip:
       type: "string"
       description: "If value of yes is passed, the suggested IP is reserved. Return value also adds reserved as yes or no. "
-    chained:
+    return_ip_only:
       type: "boolean"
-      description: "if 1, final output is ONLY IP, for use in suggest_and_create_ip aciton chain"
+      description: "if true, final output is ONLY IP, for use in suggest_and_create_ip aciton chain"
     
