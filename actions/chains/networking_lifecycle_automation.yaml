@@ -12,7 +12,7 @@
             ref: "device42.suggest_next_ip"
             parameters:
                 subnet_id: "{{subnet_id}}"
-                chained: true
+                return_ip_only: true
             on-success: "create_ip"
             on-failure: "suggest_ip_fail"
         - 
