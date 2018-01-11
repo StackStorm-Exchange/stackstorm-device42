@@ -20,3 +20,5 @@
             device_id: "{{trigger.body.data.id}}" 
             subnet_name: "provisioning_automation_internal_network"
             subnet_network_mask: "192.168.41.0/24"
+            omapi_key: "+PoRtIuTdp46vz2yxVwkQHH2wsjcZJCHcx4bgUA7ykckYR9F6+bazazPAxcslO3DXwMKGgQ6wZro4/JgZ/hBbA=="
+            omapi_key_name: "omapi_key"

@@ -5,9 +5,12 @@
   enabled: true
   entry_point: "create_or_edit_ip.py"
   parameters:
-    subnet:
+    subnet_network_mask:
       type: "string"
       description: "enter in network/mask notation, e.g.: 192.168.1.0/24"
+    subnet_name:
+      type: "string"
+      description: "name of subnet to create IP in"
     tags:
       type: "string"
       description: "tags to add to IP"

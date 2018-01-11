@@ -19,7 +19,8 @@
             name: "create_ip"
             ref: "device42.create_or_edit_ip"
             parameters:
-                subnet: "{{subnet_name}}"
+                subnet_name: "{{subnet_name}}"
+                subnet_network_mask: "{{subnet_network_mask}}"
                 ipaddress: "{{suggest_ip.result}}"
                 ip_type: "{{ip_type}}"
                 device_name: "{{get_device.result.name}}"
@@ -30,7 +31,7 @@
                 debug: false
                 available: "0"
             on-failure: "create_ip_fail"
-            on-success: "add_device_lifecycle"
+            on-success: "create_dhcp_reservation"
         
         -
             name: "create_dhcp_reservation"
@@ -41,17 +42,18 @@
                 server_name: "{{get_device.result.serial_no}}"
                 dhcp_host: "192.168.41.1"
                 dhcp_port: "7911"
-                auth_key_name: "omapi_key"
-                auth_key: "+PoRtIuTdp46vz2yxVwkQHH2wsjcZJCHcx4bgUA7ykckYR9F6+bazazPAxcslO3DXwMKGgQ6wZro4/JgZ/hBbA=="
+                auth_key_name: "{{omapi_key_name}}"
+                auth_key: "{{omapi_key}}"
             on-failure: "create_dhcp_lease_reservation_fail"
-
+            on-success: "write_pxe_cfg_file"
         - 
             name: "write_pxe_cfg_file"
             ref: "device42.write_pxe_cfg"
             parameters:
                 mac_addr: "{{get_device.result.mac_addresses[0].mac}}" 
-                custom_fields: "{{get_device.result.custom_fields}}"
+                os: "{{get_device.result.os}}"
             on-failure: "write_pxe_cfg_fail"
+            on-success: "add_device_lifecycle"
         - 
             name: "add_device_lifecycle"
             ref: "device42.add_device_lifecycle"

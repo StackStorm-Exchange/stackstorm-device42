@@ -34,3 +34,11 @@ parameters:
     subnet_name:
         type: "string"
         description: "name of subnet to get next IP suggestion from and subnet to add IP to."
+    omapi_key:
+        type: "string"
+        description: "auth key for OMAPI DHCP requests" 
+        required: true
+    omapi_key_name: 
+        type: "string"
+        description: "name of the auth key for OMAPI DHCP requests as set in /etc/dhcp/dhcpd.conf on the DHCP server."
+        required: true

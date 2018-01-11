@@ -2,14 +2,14 @@ from lib.base_action import BaseAction
 
 
 class CreateIP(BaseAction):
-    def run(self, subnet=None, 
+    def run(self, subnet_network_mask=None, subnet_name=None, 
             vrf_group_id=None, vrf_group=None,
             ipaddress=None, macaddress=None, ip_type=None, tags=None,
             device_name=None, available=None, clear_all=None,
             debug=False):
         
         payload = {
-            "ipaddress": ipaddress, "subnet": subnet,
+            "ipaddress": ipaddress, "subnet": subnet_name, 
             "macaddress": macaddress, "ip_type": ip_type,
             "tags": tags, "device": device_name
         }
