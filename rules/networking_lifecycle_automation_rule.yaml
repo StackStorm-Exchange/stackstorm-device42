@@ -11,13 +11,13 @@
     criteria: 
         trigger.body.data.type_id:
             type: "equals"
-            pattern: "{{st2kv.system.networking_lc_type_id }}" # for example, 15
-
+            pattern: "15" #enter your relevant networking iD here
+    
     action:
         ref: "device42.networking_lifecycle_automation"
         parameters:
-            subnet_id: 4 
-            device_id: "{{trigger.body.data.id}}" 
+            subnet_id: "4" 
+            device_id: "{{trigger.body.data.device_id}}" 
             subnet_name: "provisioning_automation_internal_network"
             subnet_network_mask: "192.168.41.0/24"
             omapi_key: "+PoRtIuTdp46vz2yxVwkQHH2wsjcZJCHcx4bgUA7ykckYR9F6+bazazPAxcslO3DXwMKGgQ6wZro4/JgZ/hBbA=="
