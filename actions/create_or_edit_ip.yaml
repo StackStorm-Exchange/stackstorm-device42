@@ -1,0 +1,44 @@
+---
+  name: "create_or_edit_ip"
+  runner_type: "python-script"
+  description: "Create or edit an IP Address in D42"
+  enabled: true
+  entry_point: "create_or_edit_ip.py"
+  parameters:
+    subnet_network_mask:
+      type: "string"
+      description: "enter in network/mask notation, e.g.: 192.168.1.0/24"
+    subnet_name:
+      type: "string"
+      description: "name of subnet to create IP in"
+    tags:
+      type: "string"
+      description: "tags to add to IP"
+    ip_type:
+      type: "string"
+      description: "DHCP / Static"
+    ipaddress:
+      type: "string"
+      description: "IP address to create"
+      required: true
+    macaddress:
+      type: "string"
+      description: "mac address to associate this IP address with in Device42."
+    vrf_group_id:
+      type: "string"
+      description: "ID of the VRF group - useful if you have overlapping subnets in your Device42 instance"
+    vrf_group:
+      type: "string"
+      description: "name of the VRF group - useful if you have overlapping subnets in your Device42 instance"
+    device_name:
+      type: "string"
+      description: "name of device to associate the new IP with."
+    available:
+      type: "string"
+      description: "If yes - then IP is marked as available and device and mac address associations are cleared."
+    clear_all:
+      type: "string"
+      description: "If yes - then IP is marked as available and device and mac address associations are cleared"
+    debug:
+      type: "boolean"
+      description: "if True, will print full Response text, if false, returns object.  use to debug output"

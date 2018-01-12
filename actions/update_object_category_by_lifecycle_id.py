@@ -2,9 +2,9 @@ from lib.base_action import BaseAction
 from st2client.client import Client
 
 
-class LC_ObjCat_Updater(BaseAction):
+class Update_Object_Category_By_Lifecycle_ID(BaseAction):
 
-    def run(self, identifier, identifier_type, lc_type_id, additional_changes):
+    def run(self, identifier, identifier_type, lc_type_id, additional_changes = None):
 
         st2client = Client(base_url='http://localhost')
 
@@ -24,7 +24,8 @@ class LC_ObjCat_Updater(BaseAction):
 
         payload.update(changes)
 
-        payload.update(additional_changes)
+        # if additional_changes:
+        #    payload.update(additional_changes)
 
         url = 'device/'
         response = self.putAPI(url, payload=payload)
