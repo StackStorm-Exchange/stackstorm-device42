@@ -2,7 +2,7 @@ from lib.base_action import BaseAction
 
 
 class GetLifecycleEventObjects(BaseAction):
-    def run(self): 
+    def run(self):
 
         d42_headers = {'Accept': 'application/json'}
         payload = {"query": "SELECT * FROM view_assetaction_v1"}
