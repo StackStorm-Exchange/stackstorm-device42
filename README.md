@@ -5,7 +5,9 @@ IT infrastructure
 
 ## Featured in: 
 [Dynamic User Permissions per Lifecycle Stage](https://www.device42.com/blog/2017/11/dynamic-user-permissions-with-device42-and-stackstorm/)
+
 [Automated Server Provisioning with Device42, Stackstorm, and PXE Kickstart](https://www.device42.com/blog/2018/01/automated-server-provisioning-with-device42-stackstorm-and-pxe-kickstart/)
+
 [Automated Server Provisioning Technical Walkthrough](https://www.device42.com/blog/2018/01/automated-server-provisioning-technical-walkthrough/#Device42%20Webhook%20Configuration)
 
 ## Configuration
