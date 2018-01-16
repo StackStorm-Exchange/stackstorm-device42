@@ -29,7 +29,7 @@ class BaseAction(Action):
         self.verify = self.config.get('verify_certificate', False)
 
         self.headers = {
-            'Accept':'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
 
