@@ -3,7 +3,15 @@ from lib.base_action import BaseAction
 
 class GetLifecycleEvents(BaseAction):
 
-    def run(self, device_name, lc_type, asset, enduser, date_gt, date_lt):
+    def run(
+        self,
+        device_name,
+        lc_type,
+        asset,
+        enduser,
+        date_gt,
+        date_lt
+    ):
 
         url = 'lifecycle_event/?'
 

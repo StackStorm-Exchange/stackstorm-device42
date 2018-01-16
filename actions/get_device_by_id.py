@@ -7,7 +7,7 @@ class GetDeviceById(BaseAction):
 
         url = 'devices/id/' + str(device_id) + '/'
         response = self.getAPI(url, {})
-        print("response: ", response)        
+        print("response: ", response)
         if type(response) is dict:
             return response
         else:
