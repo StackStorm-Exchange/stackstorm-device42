@@ -98,12 +98,12 @@ class BaseAction(Action):
 
         url = "%s%s" % (d42_server, endpoint)
         r = requests.post(
-                url=url,
-                auth=('admin', 'adm!nd42'),
-                headers=headers,
-                params=params,
-                data=payload,
-                verify=self.verify,
+            url=url,
+            auth=('admin', 'adm!nd42'),
+            headers=headers,
+            params=params,
+            data=payload,
+            verify=self.verify,
         )
         print("url: %s" % url)
         if r.ok:
