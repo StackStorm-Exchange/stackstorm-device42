@@ -1,0 +1,95 @@
+---
+    chain:
+        -
+            name: "get_device"
+            ref: "device42.get_device_by_id"
+            parameters:
+                device_id: "{{device_id}}"
+            on-success: "suggest_ip"
+            on-failure: "get_device_fail"
+        -
+            name: "suggest_ip"
+            ref: "device42.suggest_next_ip"
+            parameters:
+                subnet_id: "{{subnet_id}}"
+                return_ip_only: true
+            on-success: "create_ip"
+            on-failure: "suggest_ip_fail"
+        - 
+            name: "create_ip"
+            ref: "device42.create_or_edit_ip"
+            parameters:
+                subnet_name: "{{subnet_name}}"
+                subnet_network_mask: "{{subnet_network_mask}}"
+                ipaddress: "{{suggest_ip.result}}"
+                ip_type: "{{ip_type}}"
+                device_name: "{{get_device.result.name}}"
+                macaddress: "{{get_device.result.mac_addresses[0].mac }}"
+                tags: "{{tags}}"
+                vrf_group: "{{vrf_group}}"
+                vrf_group_id: "{{vrf_group_id}}"
+                debug: false
+                available: "0"
+            on-failure: "create_ip_fail"
+            on-success: "create_dhcp_reservation"
+        
+        -
+            name: "create_dhcp_reservation"
+            ref: "device42.create_dhcp_lease_reservation"
+            parameters:
+                reserved_ip: "{{suggest_ip.result}}" 
+                mac_addr: "{{get_device.result.mac_addresses[0].mac}}"
+                server_name: "{{get_device.result.serial_no}}"
+                dhcp_host: "192.168.41.1"
+                dhcp_port: "7911"
+                auth_key_name: "{{omapi_key_name}}"
+                auth_key: "{{omapi_key}}"
+            on-failure: "create_dhcp_lease_reservation_fail"
+            on-success: "write_pxe_cfg_file"
+        - 
+            name: "write_pxe_cfg_file"
+            ref: "device42.write_pxe_cfg"
+            parameters:
+                mac_addr: "{{get_device.result.mac_addresses[0].mac}}" 
+                os: "{{get_device.result.os}}"
+            on-failure: "write_pxe_cfg_fail"
+            on-success: "add_device_lifecycle"
+        - 
+            name: "add_device_lifecycle"
+            ref: "device42.add_device_lifecycle"
+            parameters:
+                identifier_type: "device"
+                identifier: "{{get_device.result.name}}"
+                lc: "os_provisioning"
+            on-failure: "add_device_lifecycle_fail"
+        - 
+            name: "get_device_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in get_device"
+        - 
+            name: "suggest_ip_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in suggest_ip"
+        -
+            name: "create_ip_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in create_ip"
+        - 
+            name: "create_dhcp_lease_reservation_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in create_dhcp_lease_resrvation"
+        -
+            name: "write_pxe_cfg_fail"
+            ref: "core.local" 
+            parameters: 
+                cmd: "echo error in write_pxe_cfg" 
+
+        -
+            name: "add_device_lifecycle_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in create_ip"

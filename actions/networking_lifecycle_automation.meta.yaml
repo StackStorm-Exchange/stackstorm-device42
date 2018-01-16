@@ -1,0 +1,44 @@
+---
+# action definition metadata
+name: "networking_lifecycle_automation"
+description: "gets device then suggests the next IP in a subnet and creates it in Device42. Adds IP to device in D42. Creates DHCP reservation and creates a specific PXE config for this machine."
+runner_type: "action-chain"
+pack: "device42"
+entry_point: "chains/networking_lifecycle_automation.yaml"
+
+enabled: true
+
+parameters:
+    subnet_id:
+        type: "string"
+        description: "ID of subnet to get next IP suggestion from and subnet to add IP to"
+        required: true
+    device_id:
+        type: "string"
+        description: "ID of device to link the IP that will be created to.  The device_id often times comes from a webhook from Device42. "
+    ip_type:
+        type: "string"
+        description: "static / DHCP / reserved"
+    vrf_group:
+        type: "string"
+        description: "name of VRF group IP will / should belong to"
+    vrf_group_id:
+        type: "string"
+        description: "ID of VRF group IP will / should belong to"
+    tags:
+        type: "string"
+        description: "Tags to add to IP"
+    subnet_network_mask:
+        type: "string"
+        description: "network/mask notation, e.g.: 192.168.1.0/24"
+    subnet_name:
+        type: "string"
+        description: "name of subnet to get next IP suggestion from and subnet to add IP to."
+    omapi_key:
+        type: "string"
+        description: "auth key for OMAPI DHCP requests" 
+        required: true
+    omapi_key_name: 
+        type: "string"
+        description: "name of the auth key for OMAPI DHCP requests as set in /etc/dhcp/dhcpd.conf on the DHCP server."
+        required: true

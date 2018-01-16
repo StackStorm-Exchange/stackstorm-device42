@@ -1,2 +1,4 @@
 requests>=2.11.1
 dnspython>=1.14.0
+pypureomapi==0.6
+

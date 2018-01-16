@@ -3,15 +3,23 @@
 Integration pack that provides support for Device42, a self-documenting CMDB and single source of truth for all things
 IT infrastructure
 
+## Featured in: 
+[Dynamic User Permissions per Lifecycle Stage](https://www.device42.com/blog/2017/11/dynamic-user-permissions-with-device42-and-stackstorm/)
+
+[Automated Server Provisioning with Device42, Stackstorm, and PXE Kickstart](https://www.device42.com/blog/2018/01/automated-server-provisioning-with-device42-stackstorm-and-pxe-kickstart/)
+
+[Automated Server Provisioning Technical Walkthrough](https://www.device42.com/blog/2018/01/automated-server-provisioning-technical-walkthrough/#Device42%20Webhook%20Configuration)
+
 ## Configuration
 
 Copy the example configuration in [device42.yaml.example](./device42.yaml.example)
 to `/opt/stackstorm/configs/device42.yaml` and edit as required.
 
-* `d42_server` - Device42 instance address (with protocol and without trailing slash)
+* `d42_server` - Device42 instance address (with protocol and with trailing slash) ex: https://10.42.2.241/api/1.0/
 * `d42_username` - Device42 username
 * `d42_password` - Device42 password
 * `verify_certificate` - Set to `false` in case of self-signed SSL certificate
+* `d42_doql_api_path` - Set to '/services/data/v1.0/query/' to use the DOQL API endpoint.
 
 You can also use dynamic values from the datastore. See the
 [docs](https://docs.stackstorm.com/reference/pack_configs.html) for more info.
@@ -22,23 +30,52 @@ You can also use dynamic values from the datastore. See the
 
 ## Supported Actions
 ```
-+---------------------------------------------------+----------+------------------------------------------+
-| ref                                               | pack     | description                              |
-+---------------------------------------------------+----------+------------------------------------------+
-| device42.device_name_list                         | device42 | Returns list of devices names            |
-| device42.get_device_by_id                         | device42 | Get a device with full details from D42  |
-|                                                   |          | by its ID                                |
-| device42.get_dns_zone                             | device42 | Returns DNS zone file                    |
-| device42.get_lifecycle_events                     | device42 | Get lifecycle events from D42 with       |
-|                                                   |          | optional filtering parameters.           |
-|                                                   |          | https://api.device42.com/#asset-device-  |
-|                                                   |          | life-cycle                               |
-| device42.suggest_next_ip                          | device42 | Suggest next available IP Address        |
-| device42.udpate_object_category_by_lifecycle_id   | device42 | Update a devices object category and     |
-|                                                   |          | more  on D42 based on an incoming        |
-|                                                   |          | lifecycle event ID.                      |
-| device42.update_device                            | device42 | Update a device on D42                   |
-+---------------------------------------------------+----------+------------------------------------------+
+$ st2 action list -p device42
++-------------------------------------------------+----------+---------------------------------------------------+
+| ref                                             | pack     | description                                       |
++-------------------------------------------------+----------+---------------------------------------------------+
+| device42.add_device_lifecycle                   | device42 | Adds a lifecycle event to a Device                |
+|                                                 |          |                                                   |
+| device42.create_dhcp_lease_reservation          | device42 | Create DHCP lease reservation between a MAC       |
+|                                                 |          | address and IP address as stored in Device42 on a |
+|                                                 |          | DHCP server of your choice. Utilizies pypureomapi |
+|                                                 |          | to make OMAPI requests to isc-dhcp-server / dhcpd |
+|                                                 |          | linux type DHCP servers.                          |
+|                                                 |          |                                                   |
+| device42.create_or_edit_ip                      | device42 | Create or edit an IP Address in D42               |
+|                                                 |          |                                                   |
+| device42.device_name_list                       | device42 | Returns list of devices names                     |
+|                                                 |          |                                                   |
+| device42.get_device_by_id                       | device42 | Get a device with full details from D42 by its ID |
+|                                                 |          |                                                   |
+| device42.get_dns_zone                           | device42 | Returns DNS zone file                             |
+|                                                 |          |                                                   |
+| device42.get_lifecycle_event_objects            | device42 | Returns a list of lifecycle event objects from    |
+|                                                 |          | D42.  Useful for populating ST2 datastore.        |
+|                                                 |          |                                                   |
+| device42.get_lifecycle_events                   | device42 | get lifecycle events from D42 with optional       |
+|                                                 |          | filtering parameters. https://api.device42.com    |
+|                                                 |          | /#asset-device-life-cycle                         |
+|                                                 |          |                                                   |
+| device42.networking_lifecycle_automation        | device42 | gets device then suggests the next IP in a subnet |
+|                                                 |          | and creates it in Device42. Adds IP to device in  |
+|                                                 |          | D42. Creates DHCP reservation and creates a       |
+|                                                 |          | specific PXE config for this machine.             |
+|                                                 |          |                                                   |
+| device42.suggest_and_create_ip                  | device42 | suggests the next IP in a subnet and creates it   |
+|                                                 |          | in Device42                                       |
+|                                                 |          |                                                   |
+| device42.suggest_next_ip                        | device42 | Suggest next available IP Address                 |
+|                                                 |          |                                                   |
+| device42.update_device                          | device42 | Update a device on D42                            |
+|                                                 |          |                                                   |
+| device42.update_object_category_by_lifecycle_id | device42 | Update a devices object category and more  on D42 |
+|                                                 |          |                                                   |
+|                                                 |          | based on an incoming lifecycle event ID.          |
+| device42.write_pxe_cfg                          | device42 | Simply writes a pxe cfg for an incoming MAC addr  |
+|                                                 |          | + OS. Requires configuration based on your        |
+|                                                 |          | environment specific PXE configuration.           |
++-------------------------------------------------+----------+---------------------------------------------------+
 ```
 
 ## Examples

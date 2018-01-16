@@ -1,0 +1,26 @@
+---
+    name: "device_created_initial_lifecycle"
+    pack: "device42"
+    description: "Initializes new devices created in the automated server provisioning workflow with the \"purchasing\" lifecycle"
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "d42"
+
+    criteria: 
+        trigger.body.data.notes:
+            type: "icontains"
+            pattern: "provisioning_auto"
+        trigger.body.action:
+            type: "iequals"
+            pattern: "I"
+    
+    action:
+        ref: "device42.add_device_lifecycle"
+        parameters: 
+            identifier: "{{trigger.body.data.name}}" 
+            identifier_type: "device"
+            lc: "purchasing"
+            additional_changes: "{'tags':'{{trigger.body.time_stamp}}'}" 

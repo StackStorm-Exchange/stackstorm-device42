@@ -1,0 +1,36 @@
+---
+# action definition metadata
+name: "suggest_and_create_ip"
+description: "suggests the next IP in a subnet and creates it in Device42"
+runner_type: "action-chain"
+
+entry_point: "chains/suggest_and_create_ip.yaml"
+
+enabled: false 
+
+parameters:
+    subnet_id: 
+        type: "string"
+        description: "ID of subnet to get next IP suggestion from and subnet to add IP to"
+        required: true
+    device_name:
+        type: "string"
+        description: "unique name of device on Device42 to add the IP to"
+    ip_type: 
+        type: "string"
+        description: "static / DHCP / reserved" 
+    vrf_group:
+        type: "string"
+        description: "name of VRF group IP will / should belong to"
+    vrf_group_id:
+        type: "string"
+        description: "ID of VRF group IP will / should belong to" 
+    tags:
+        type: "string"
+        description: "Tags to add to IP"
+    subnet_network_mask: 
+        type: "string"
+        description: "network/mask notation, e.g.: 192.168.1.0/24"
+    subnet_name: 
+        type: "string"
+        description: "name of subnet to get next IP suggestion from and subnet to add IP to."

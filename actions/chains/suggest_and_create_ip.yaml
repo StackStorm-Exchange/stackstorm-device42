@@ -1,0 +1,47 @@
+---
+    chain:
+        -
+            name: "suggest_ip"
+            ref: "device42.suggest_next_ip"
+            parameters: 
+                subnet_id: "{{subnet_id}}"
+                chained: true
+            on-success: "create_ip"
+            on-failure: "suggest_ip_fail"
+        - 
+            name: "create_ip"
+            ref: "device42.create_or_edit_ip"
+            parameters: 
+                subnet: "{{subnet_name}}"
+                ipaddress: "{{suggest_ip.result}}"
+                device_name: "{{device_name}}"
+                tags: "{{tags}}"
+                vrf_group: "{{vrf_group}}"
+                vrf_group_id: "{{vrf_group_id}}"
+                ip_type: "{{ip_type}}"
+                debug: false
+            on-failure: "create_ip_fail"
+            on-success: "add_device_lifecycle"
+        - 
+            name: "add_device_lifecycle"
+            ref: "device42.add_device_lifecycle"
+            parameters:
+                identifier_type: "device"
+                identifier: "{{device_name}}"
+                lc: "os_provisioning"
+            on-failure: "add_device_lifecycle_fail"
+        -            
+            name: "suggest_ip_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in suggest_ip >> ./error.log"
+        -
+            name: "create_ip_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in create_ip >> ./error.log"        
+        -
+            name: "add_device_lifecycle_fail"
+            ref: "core.local"
+            parameters:
+                cmd: "echo error in create_ip >> ./error.log"
