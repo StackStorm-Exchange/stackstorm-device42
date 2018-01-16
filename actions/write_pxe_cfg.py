@@ -1,6 +1,6 @@
 from lib.base_action import BaseAction
-from st2client.client import Client 
-from shutil import copyfile 
+from st2client.client import Client
+from shutil import copyfile
 
 
 class Write_PXE_CFG(BaseAction):
@@ -23,7 +23,7 @@ class Write_PXE_CFG(BaseAction):
 
             # check st2 data store for pxe cfg name for this OS
             st2client = Client(base_url='http://localhost')
-            key = "%s_pxe_cfg" % os.lower() 
+            key = "%s_pxe_cfg" % os.lower()
             pxe_cfg = st2client.keys.get_by_name(name=key).value
 
             mac_dashes = mac_addr.replace(':', '-')
@@ -41,8 +41,8 @@ class Write_PXE_CFG(BaseAction):
             # for more info:
             # http://www.syslinux.org/wiki/index.php?title=PXELINUX#Configuration_filename
             copyfile(
-                os_pxe_cfg, 
-                "%s/%s" % (pxe_cfg_path, mac_file_name)  
+                os_pxe_cfg,
+                "%s/%s" % (pxe_cfg_path, mac_file_name)
             )
 
             print(

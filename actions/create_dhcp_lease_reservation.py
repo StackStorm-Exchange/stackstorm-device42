@@ -19,7 +19,7 @@ class CreateDHCPLeaseReservation(BaseAction):
                 dhcp_host, dhcp_port,
                 auth_key_name.encode(),
                 auth_key.encode()
-            )       
+            )
             response = o.add_host_supersede_name(
                 reserved_ip,
                 mac_addr,
