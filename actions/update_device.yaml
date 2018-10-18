@@ -1,6 +1,6 @@
 ---
 name: update_device
-runner_type: run-python
+runner_type: python-script
 description: "Update a device on D42" 
 enabled: true
 entry_point: 'update_device.py'

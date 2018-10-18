@@ -1,6 +1,6 @@
 ---
 name: add_device_lifecycle 
-runner_type: run-python
+runner_type: python-script
 description: "Adds a lifecycle event to a Device"
 enabled: true
 entry_point: 'add_device_lifecycle.py'

@@ -1,6 +1,6 @@
 ---
 name: get_lifecycle_events 
-runner_type: run-python
+runner_type: python-script
 description: "get lifecycle events from D42 with optional filtering parameters. https://api.device42.com/#asset-device-life-cycle"  
 enabled: true
 entry_point: 'get_lifecycle_events.py'
