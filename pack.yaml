@@ -5,3 +5,6 @@ description: Device42 Actions and Rules for StackStorm
 version: 0.7.1
 author: Device42 Inc.
 email: support@device42.com
+python_versions:
+  - "2"
+  - "3"
