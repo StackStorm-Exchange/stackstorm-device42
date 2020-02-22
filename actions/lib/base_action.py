@@ -1,6 +1,6 @@
 import requests
 from st2common.runners.base_action import Action
-from urlparse import urlparse
+from six.moves.urllib.parse import urlparse
 
 
 class Device42BaseException(Exception):

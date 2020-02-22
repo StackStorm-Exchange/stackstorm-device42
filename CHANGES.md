@@ -1,5 +1,10 @@
 # Change Log
 
+# 0.7.2
+
+- Add explicit support for Python versions
+- Fixups for Python 3
+
 # 0.6.0 +  0.7.0 
 - Added new actions:  `create_dhcp_lease_reservation`, `create_or_edit_ip`, `get_lifecycle_event_objects`, `suggest_next_ip`, `write_pxe_cfg`, 
 - Added new action chain: `networking_lifecycle_automation`, `suggest_and_create_ip`
