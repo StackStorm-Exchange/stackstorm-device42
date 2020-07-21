@@ -1,5 +1,9 @@
 # Change Log
 
+# 0.7.3
+
+- Quiet pylint no-member error
+
 # 0.7.2
 
 - Add explicit support for Python versions
