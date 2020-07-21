@@ -28,7 +28,7 @@ class GetDnsZone(BaseAction):
                 try:
                     rdtype = dns.rdatatype.from_text(record["type"])
                     rdata = dns.rdata.from_text(
-                        dns.rdataclass.IN, rdtype, record["content"]
+                        dns.rdataclass.IN, rdtype, record["content"]  # pylint: disable=no-member
                     )
                     n = zone.get_rdataset(record["name"], rdtype, create=True)
                     n.add(rdata, record["ttl"])
