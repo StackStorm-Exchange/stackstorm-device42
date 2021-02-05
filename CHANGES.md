@@ -1,5 +1,9 @@
 # Change Log
 
+# 1.0.0
+
+* Drop Python 2.7 support
+
 # 0.7.3
 
 - Quiet pylint no-member error
