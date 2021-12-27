@@ -20,7 +20,7 @@ class CreateDHCPLeaseReservation(BaseAction):
                 auth_key_name.encode(),
                 auth_key.encode()
             )
-            response = o.add_host_supersede_name(
+            response = o.add_host_supersede_name(  # pylint: disable=assignment-from-no-return
                 reserved_ip,
                 mac_addr,
                 server_name
